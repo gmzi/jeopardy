@@ -63,7 +63,7 @@ async function fillTable() {
         // handleClick($tr.get()[i].children[j]);
         // $tr.get()[i].children[j].innerText = categories[j].clues[i].question;
         if (categories[j].clues[i].showing === null) {
-          $tr.get()[i].children[j].innerText = '?';
+          $tr.get()[i].children[j].innerText = ' ? ';
           $tr.get()[i].children[j].addEventListener('click', function (evt) {
             evt.target.innerText = categories[j].clues[i].question;
             categories[j].clues[i].showing = 'question';
@@ -72,6 +72,7 @@ async function fillTable() {
                 .get()
                 [i].children[j].addEventListener('click', function (evt) {
                   evt.target.innerText = categories[j].clues[i].answer;
+                  evt.target.style.backgroundColor = ' rgb(3, 75, 120)';
                   categories[j].clues[i].showing = 'answer';
                 });
             }
@@ -96,7 +97,26 @@ function handleClick(evt) {}
  * and update the button used to fetch data.
  */
 
-function showLoadingView() {}
+function showLoadingView() {
+  let i = 0;
+  function move() {
+    if (i == 0) {
+      i = 1;
+      const elem = document.getElementById('bar');
+      let width = 1;
+      let id = setInterval(frame, 10);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          i = 0;
+        } else {
+          width++;
+          elem.style.width = width + '%';
+        }
+      }
+    }
+  }
+}
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
@@ -110,16 +130,18 @@ function hideLoadingView() {}
  * */
 
 async function setupAndStart() {
-  $('<h1>Jeopardy</h1>').appendTo('body');
+  $('<h1 id="title">Jeopardy!</h1>').appendTo('body');
   $('<button id="btn-start">Ready / Go</button>').appendTo('body');
   $('#btn-start').on('click', function () {
     $('#btn-start').remove();
+    $('<div id="progress"><div id="bar"></div></div>').appendTo('body');
+    // showLoadingView();
     spreadTable();
   });
 }
 
 async function spreadTable() {
-  const table = $(`<table class="table">
+  const table = $(`<table class="table table-bordered table-primary">
     <thead>
       <tr>
         <th scope="col"></th>
