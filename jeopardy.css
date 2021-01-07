@@ -6,30 +6,6 @@
   #74119c
 */
 
-tr {
-  padding: 2rem;
-  margin: 1rem;
-  color: red;
-  border: 1px solid black;
-}
-
 table {
   border: 1px solid black;
-}
-
-tbody {
-  border: 1px solid red;
-}
-
-thead {
-  background-color: blue;
-}
-
-th {
-  padding: 1rem;
-}
-
-td {
-  border: 1px solid blue;
-  padding: 2rem;
 }

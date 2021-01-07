@@ -50,7 +50,6 @@ function getCategory(catId) {}
  */
 
 async function fillTable() {
-  console.log(categories);
   const th = document.querySelectorAll('th');
   const $tr = $('tbody tr');
 
@@ -111,18 +110,16 @@ function hideLoadingView() {}
  * */
 
 async function setupAndStart() {
-  //   const category = await axios.get(
-  //     `http://jservice.io/api/category?id=${shuffler()}`
-  //   );
-  //   console.log(category.data.clues);
-  //   const clues = await axios.get('http://jservice.io/api/clues', {
-  //     params: { count: 100, offset: shuffler() },
-  //   });
-
   $('<h1>Jeopardy</h1>').appendTo('body');
-  $('<button id="btn-start">Start</button>').appendTo('body');
+  $('<button id="btn-start">Ready / Go</button>').appendTo('body');
   $('#btn-start').on('click', function () {
-    const table = $(`<table class="table">
+    $('#btn-start').remove();
+    spreadTable();
+  });
+}
+
+async function spreadTable() {
+  const table = $(`<table class="table">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -176,16 +173,16 @@ async function setupAndStart() {
       </tr>
     </tbody>
   </table>`);
-    table.appendTo('body');
-    $('#btn-start').remove();
-    $('<button id="restart">Play again</button>')
-      .appendTo('body')
-      .on('click', function () {
-        location.reload();
-      });
+  console.log(document.querySelector('body').children);
+  table.appendTo('body');
 
-    getData();
-  });
+  getData();
+
+  $('<button id="restart">New game</button>')
+    .appendTo('body')
+    .on('click', function () {
+      location.reload();
+    });
 }
 
 async function getData() {
