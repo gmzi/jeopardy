@@ -63,10 +63,12 @@ async function fillTable() {
       } else {
         // $tr.get()[i].children[j].innerText = categories[j].clues[i].question;
         if (categories[j].clues[i].showing === null) {
-          $tr.get()[i].children[j].innerText = ' ? ';
+          $tr.get()[i].children[j].innerText = ' $800 ';
+          $tr.get()[i].children[j].style.color = 'rgb(250, 185, 0)';
           $tr.get()[i].children[j].addEventListener('click', function (evt) {
             evt.target.innerText = categories[j].clues[i].question;
             categories[j].clues[i].showing = 'question';
+            $tr.get()[i].children[j].style.color = 'whitesmoke';
             if (categories[j].clues[i].showing === 'question') {
               $tr
                 .get()
@@ -98,31 +100,28 @@ function handleClick(evt) {}
  */
 
 function showLoadingView() {
-  let i = 0;
-  function move() {
-    if (i == 0) {
-      i = 1;
-      const elem = document.getElementById('bar');
-      let width = 1;
-      let id = setInterval(frame, 10);
-      function frame() {
-        if (width >= 100) {
-          clearInterval(id);
-          i = 0;
-        } else {
-          width++;
-          elem.style.width = width + '%';
-        }
-      }
-    }
-  }
+  const h1 = document.querySelector('#title');
+  const table = document.querySelector('table');
+  h1.classList.add('hide');
+  table.classList.add('hide');
+  getData();
 }
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
 function hideLoadingView() {
+  const h1 = document.querySelector('#title');
   const spinner = document.querySelector('.spin');
+  const table = document.querySelector('table');
+  h1.classList.remove('hide');
+  table.classList.remove('hide');
   spinner.classList.add('hide');
+
+  $('<button id="restart">New game</button>')
+    .appendTo('body')
+    .on('click', function () {
+      location.reload();
+    });
 }
 
 /** Start game:
@@ -144,7 +143,7 @@ async function setupAndStart() {
 }
 
 async function spreadTable() {
-  const table = $(`<table class="table table-bordered table-primary">
+  const $table = $(`<table class="table table-bordered table-primary">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -198,15 +197,17 @@ async function spreadTable() {
       </tr>
     </tbody>
   </table>`);
-  table.appendTo('body');
+  $table.appendTo('body');
+  // $table.addClass('hide');
+  showLoadingView();
 
-  getData();
+  // getData();
 
-  $('<button id="restart">New game</button>')
-    .appendTo('body')
-    .on('click', function () {
-      location.reload();
-    });
+  // $('<button id="restart">New game</button>')
+  //   .appendTo('body')
+  //   .on('click', function () {
+  //     location.reload();
+  //   });
 }
 
 async function getData() {
