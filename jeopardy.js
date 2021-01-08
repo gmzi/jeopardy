@@ -120,7 +120,10 @@ function showLoadingView() {
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
-function hideLoadingView() {}
+function hideLoadingView() {
+  const spinner = document.querySelector('.spin');
+  spinner.classList.add('hide');
+}
 
 /** Start game:
  *
@@ -133,8 +136,8 @@ async function setupAndStart() {
   $('<h1 id="title">Jeopardy!</h1>').appendTo('body');
   $('<button id="btn-start">Ready / Go</button>').appendTo('body');
   $('#btn-start').on('click', function () {
+    $('<div class="spin"></div>').appendTo('body');
     $('#btn-start').remove();
-    $('<div id="progress"><div id="bar"></div></div>').appendTo('body');
     // showLoadingView();
     spreadTable();
   });
@@ -195,7 +198,6 @@ async function spreadTable() {
       </tr>
     </tbody>
   </table>`);
-  console.log(document.querySelector('body').children);
   table.appendTo('body');
 
   getData();
@@ -223,6 +225,7 @@ async function getData() {
     categories.push(obj);
   }
   fillTable();
+  hideLoadingView();
 }
 
 setupAndStart();
