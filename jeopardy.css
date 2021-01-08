@@ -88,6 +88,11 @@ td:active {
   background-color: #28a200;
 }
 
+.hide {
+  display: none;
+}
+
+/* -------------------------------------- */
 /* loading spinner */
 @keyframes spinner {
   0% {
@@ -106,14 +111,9 @@ td:active {
   content: '';
   height: 40px;
   width: 40px;
-  /* display: block; */
   position: absolute;
   bottom: 45%;
   text-align: center;
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
-}
-
-.hide {
-  display: none;
 }
