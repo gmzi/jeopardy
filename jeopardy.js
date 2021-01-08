@@ -57,10 +57,10 @@ async function fillTable() {
     // console.log($tr.get()[i]);
     th[i].innerText = categories[i].title;
     for (let j = 0; j < categories.length; j++) {
+      // loop has an inconsistency, catch it here:
       if (!$tr.get()[i]) {
-        console.log('to fix');
+        new Error();
       } else {
-        // handleClick($tr.get()[i].children[j]);
         // $tr.get()[i].children[j].innerText = categories[j].clues[i].question;
         if (categories[j].clues[i].showing === null) {
           $tr.get()[i].children[j].innerText = ' ? ';
