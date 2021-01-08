@@ -57,7 +57,7 @@ async function fillTable() {
     // console.log($tr.get()[i]);
     th[i].innerText = categories[i].title;
     for (let j = 0; j < categories.length; j++) {
-      // loop has an inconsistency, catch it here:
+      // loop has an inconsistency, catch it:
       if (!$tr.get()[i]) {
         new Error();
       } else {
@@ -198,16 +198,8 @@ async function spreadTable() {
     </tbody>
   </table>`);
   $table.appendTo('body');
-  // $table.addClass('hide');
+
   showLoadingView();
-
-  // getData();
-
-  // $('<button id="restart">New game</button>')
-  //   .appendTo('body')
-  //   .on('click', function () {
-  //     location.reload();
-  //   });
 }
 
 async function getData() {
@@ -229,16 +221,6 @@ async function getData() {
   hideLoadingView();
 }
 
-setupAndStart();
-
-/** On click of start / restart button, set up game. */
-
-// TODO
-
-/** On page load, add event handler for clicking clues */
-
-// TODO
-
 function shuffler() {
   let number = _.shuffle([
     Math.floor(Math.random() * 9),
@@ -248,3 +230,13 @@ function shuffler() {
   ]);
   return number.join('');
 }
+
+setupAndStart();
+
+/** On click of start / restart button, set up game. */
+
+// TODO
+
+/** On page load, add event handler for clicking clues */
+
+// TODO
