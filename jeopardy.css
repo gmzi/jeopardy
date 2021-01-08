@@ -14,24 +14,25 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(0.5turn, #0849c1, #f3cf7598, #8710b6);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(
+    192deg,
+    rgb(16, 16, 125) 5%,
+    rgba(164, 3, 62, 0.988) 100%
+  );
 }
 
 h1 {
-  /* font-family: 'Work Sans', sans-serif; */
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 3rem;
   text-align: center;
-  color: white;
-  padding: 0.5rem;
-  background-color: slategrey;
-  border-radius: 2px;
-  border: 1px solid black;
+  color: whitesmoke;
+  text-transform: lowercase;
+  margin-bottom: 0.5rem;
 }
 
 button {
@@ -40,6 +41,7 @@ button {
   border: 2px solid;
   border-radius: 5px;
   position: relative;
+  margin-top: 0.5rem;
 }
 
 button:hover {
@@ -48,8 +50,8 @@ button:hover {
 
 table {
   background-color: rgba(4, 4, 103, 0.851);
-  margin: 1rem;
   border-collapse: collapse;
+  margin: 1rem 1rem;
 }
 
 th,
