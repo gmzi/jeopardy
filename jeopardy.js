@@ -7,33 +7,37 @@ function jeopardy() {
 
     for (let i = 0; i < categories.length; i++) {
       th[i].innerText = categories[i].title;
+
       for (let j = 0; j < categories.length; j++) {
         // loop has an inconsistency, this to catch it:
         if (!$tr.get()[i]) {
-          new Error();
+          console.error(`tr.get()[${i}] returned null or undefined`);
         } else {
           // Basic loop structure: $tr.get()[i].children[j].innerText = categories[j].clues[i].question;
           if (categories[j].clues[i].showing === null) {
-            $tr.get()[i].children[j].innerText = ' $800 ';
-            $tr.get()[i].children[j].style.color = 'rgb(250, 185, 0)';
-            $tr.get()[i].children[j].addEventListener('click', function (evt) {
-              evt.target.innerText = categories[j].clues[i].question;
-              categories[j].clues[i].showing = 'question';
-              $tr.get()[i].children[j].style.color = 'whitesmoke';
-              if (categories[j].clues[i].showing === 'question') {
-                $tr
-                  .get()
-                  [i].children[j].addEventListener('click', function (evt) {
-                    evt.target.innerText = categories[j].clues[i].answer;
-                    evt.target.style.backgroundColor = ' rgb(3, 75, 120)';
-                    categories[j].clues[i].showing = 'answer';
-                  });
-              }
-            });
+            fillTableHelper($tr, i, j);
           }
         }
       }
     }
+  }
+
+  function fillTableHelper(tr, i, j) {
+    tr.get()[i].children[j].innerText = ' $800 ';
+    tr.get()[i].children[j].style.color = 'rgb(250, 185, 0)';
+
+    tr.get()[i].children[j].addEventListener('click', function (evt) {
+      evt.target.innerText = categories[j].clues[i].question;
+      categories[j].clues[i].showing = 'question';
+      tr.get()[i].children[j].style.color = 'whitesmoke';
+      if (categories[j].clues[i].showing === 'question') {
+        tr.get()[i].children[j].addEventListener('click', function (evt) {
+          evt.target.innerText = categories[j].clues[i].answer;
+          evt.target.style.backgroundColor = ' rgb(3, 75, 120)';
+          categories[j].clues[i].showing = 'answer';
+        });
+      }
+    });
   }
 
   function makeRestartBtn() {
