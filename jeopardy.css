@@ -35,6 +35,13 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+#instructions {
+  margin-top: 0.5rem;
+  color: whitesmoke;
+  font-size: small;
+  font-weight: 100;
+}
+
 button {
   padding: 1rem;
   background-color: #ebe52b;

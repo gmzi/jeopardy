@@ -41,6 +41,9 @@ function jeopardy() {
   }
 
   function makeRestartBtn() {
+    $(
+      '<p id="instructions">–click once for the question, click again for the answer–</p>'
+    ).appendTo('h1');
     $('<button id="restart">New game</button>')
       .appendTo('body')
       .on('click', function () {
