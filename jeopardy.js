@@ -62,7 +62,7 @@ function jeopardy() {
   async function getData() {
     for (let i = 0; i < 6; i++) {
       const category = await axios.get(
-        `http://jservice.io/api/category?id=${shuffler()}`
+        `https://jservice.io/api/category?id=${shuffler()}`
       );
 
       let obj = {
