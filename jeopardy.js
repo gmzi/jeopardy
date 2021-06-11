@@ -9,9 +9,9 @@ function jeopardy() {
       th[i].innerText = categories[i].title;
 
       for (let j = 0; j < categories.length; j++) {
-        // loop has an inconsistency, this to catch it:
         if (!$tr.get()[i]) {
-          console.error(`tr.get()[${i}] returned null or undefined`);
+          // console.log(`tr.get()[${i}] returned null or undefined`);
+          continue;
         } else {
           // Basic loop structure: $tr.get()[i].children[j].innerText = categories[j].clues[i].question;
           if (categories[j].clues[i].showing === null) {
